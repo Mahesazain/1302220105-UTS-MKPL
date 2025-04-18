@@ -1,25 +1,22 @@
 package lib;
 
+package lib;
+
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.LinkedList;
 import java.util.List;
+import lib.EmploymentInfo;
+import lib.PersonalInfo;
 
 public class Employee {
 
 	private String employeeId;
-	private String firstName;
-	private String lastName;
-	private String idNumber;
-	private String address;
-	
-	private int yearJoined;
-	private int monthJoined;
-	private int dayJoined;
+	private PersonalInfo personalInfo;
+        private EmploymentInfo employmentInfo;
+        
 	private int monthWorkingInYear;
 	
-	private boolean isForeigner;
-	private boolean gender; //true = Laki-laki, false = Perempuan
 	
 	private int monthlySalary;
 	private int otherMonthlyIncome;
@@ -30,21 +27,22 @@ public class Employee {
 
 	private List<String> childNames;
 	private List<String> childIdNumbers;
+
+        public Employee(String employeeId, PersonalInfo personalInfo, EmploymentInfo employmentInfo, int monthWorkingInYear, int monthlySalary, int otherMonthlyIncome, int annualDeductible, String spouseName, String spouseIdNumber) {
+            this.employeeId = employeeId;
+            this.personalInfo = personalInfo;
+            this.employmentInfo = employmentInfo;
+            this.monthWorkingInYear = monthWorkingInYear;
+            this.monthlySalary = monthlySalary;
+            this.otherMonthlyIncome = otherMonthlyIncome;
+            this.annualDeductible = annualDeductible;
+            this.spouseName = spouseName;
+            this.spouseIdNumber = spouseIdNumber;
+            childNames = new LinkedList<String>();
+            childIdNumbers = new LinkedList<String>();
+        }
 	
-	public Employee(String employeeId, String firstName, String lastName, String idNumber, String address, int yearJoined, int monthJoined, int dayJoined, boolean isForeigner, boolean gender) {
-		this.employeeId = employeeId;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.idNumber = idNumber;
-		this.address = address;
-		this.yearJoined = yearJoined;
-		this.monthJoined = monthJoined;
-		this.dayJoined = dayJoined;
-		this.isForeigner = isForeigner;
-		this.gender = gender;
-		
-		childNames = new LinkedList<String>();
-		childIdNumbers = new LinkedList<String>();
+        
 	}
 	
 	/**
