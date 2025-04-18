@@ -9,18 +9,17 @@ package lib;
  * @author Mahesa
  */
 public class PersonalInfo {
+ 
     private String firstName;
     private String lastName;
     private String idNumber;
     private String address;
-    private boolean gender;
-    
+     
     PersonalInfo(String firstName, String lastName, String idNumber, String address, boolean gender){
         this.firstName = firstName;
         this.lastName = lastName;
         this.idNumber = idNumber;
         this.address = address;
-        this.gender = gender;
     }
 
     public String getFirstName() {
@@ -37,10 +36,6 @@ public class PersonalInfo {
 
     public String getAddress() {
         return address;
-    }
-
-    public boolean isGender() {
-        return gender;
     }
     
     
