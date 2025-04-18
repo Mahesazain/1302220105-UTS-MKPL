@@ -1,22 +1,19 @@
 package lib;
 
-package lib;
-
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.LinkedList;
 import java.util.List;
-import lib.EmploymentInfo;
-import lib.PersonalInfo;
 
 public class Employee {
 
 	private String employeeId;
 	private PersonalInfo personalInfo;
         private EmploymentInfo employmentInfo;
-        
 	private int monthWorkingInYear;
 	
+	private boolean isForeigner;
+	private boolean gender; //true = Laki-laki, false = Perempuan
 	
 	private int monthlySalary;
 	private int otherMonthlyIncome;
@@ -28,11 +25,13 @@ public class Employee {
 	private List<String> childNames;
 	private List<String> childIdNumbers;
 
-        public Employee(String employeeId, PersonalInfo personalInfo, EmploymentInfo employmentInfo, int monthWorkingInYear, int monthlySalary, int otherMonthlyIncome, int annualDeductible, String spouseName, String spouseIdNumber) {
+        public Employee(String employeeId, PersonalInfo personalInfo, EmploymentInfo employmentInfo, int monthWorkingInYear, boolean isForeigner, boolean gender, int monthlySalary, int otherMonthlyIncome, int annualDeductible, String spouseName, String spouseIdNumber) {
             this.employeeId = employeeId;
             this.personalInfo = personalInfo;
             this.employmentInfo = employmentInfo;
             this.monthWorkingInYear = monthWorkingInYear;
+            this.isForeigner = isForeigner;
+            this.gender = gender;
             this.monthlySalary = monthlySalary;
             this.otherMonthlyIncome = otherMonthlyIncome;
             this.annualDeductible = annualDeductible;
@@ -42,30 +41,23 @@ public class Employee {
             childIdNumbers = new LinkedList<String>();
         }
 	
-        
-	}
+	
 	
 	/**
 	 * Fungsi untuk menentukan gaji bulanan pegawai berdasarkan grade kepegawaiannya (grade 1: 3.000.000 per bulan, grade 2: 5.000.000 per bulan, grade 3: 7.000.000 per bulan)
 	 * Jika pegawai adalah warga negara asing gaji bulanan diperbesar sebanyak 50%
 	 */
-	
+	private int calculateForeignerBonus(int baseSalary) {
+            return isForeigner ? (int)(baseSalary * 1.5) : baseSalary;
+        }
+
 	public void setMonthlySalary(int grade) {	
 		if (grade == 1) {
-			monthlySalary = 3000000;
-			if (isForeigner) {
-				monthlySalary = (int) (3000000 * 1.5);
-			}
+			monthlySalary = calculateForeignerBonus(3000000);
 		}else if (grade == 2) {
-			monthlySalary = 5000000;
-			if (isForeigner) {
-				monthlySalary = (int) (3000000 * 1.5);
-			}
+			monthlySalary = calculateForeignerBonus(5000000);
 		}else if (grade == 3) {
-			monthlySalary = 7000000;
-			if (isForeigner) {
-				monthlySalary = (int) (3000000 * 1.5);
-			}
+			monthlySalary = calculateForeignerBonus(7000000);
 		}
 	}
 	
