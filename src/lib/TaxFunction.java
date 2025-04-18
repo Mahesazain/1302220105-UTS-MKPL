@@ -23,7 +23,7 @@ public class TaxFunction {
     int tax = 0;
 
     if (numberOfMonthWorking > 12) {
-      System.err.println("More than 12 month working per year");
+        throw new IllegalArgumentException("Months worked cannot exceed 12");
     }
 
     // Step 2: Replace magic numbers with constants
