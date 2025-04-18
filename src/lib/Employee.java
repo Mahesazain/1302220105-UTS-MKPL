@@ -7,14 +7,17 @@ import java.util.List;
 
 public class Employee {
 
+        enum Gender { MALE, FEMALE }
+        private Gender gender;
 	private String employeeId;
 	private PersonalInfo personalInfo;
         private EmploymentInfo employmentInfo;
 	private int monthWorkingInYear;
 	
-	private boolean isForeigner;
-	private boolean gender; //true = Laki-laki, false = Perempuan
 	
+        private int yearJoined;
+	private int monthJoined;
+	private int dayJoined;
 	private int monthlySalary;
 	private int otherMonthlyIncome;
 	private int annualDeductible;
@@ -25,21 +28,25 @@ public class Employee {
 	private List<String> childNames;
 	private List<String> childIdNumbers;
 
-        public Employee(String employeeId, PersonalInfo personalInfo, EmploymentInfo employmentInfo, int monthWorkingInYear, boolean isForeigner, boolean gender, int monthlySalary, int otherMonthlyIncome, int annualDeductible, String spouseName, String spouseIdNumber) {
-            this.employeeId = employeeId;
-            this.personalInfo = personalInfo;
-            this.employmentInfo = employmentInfo;
-            this.monthWorkingInYear = monthWorkingInYear;
-            this.isForeigner = isForeigner;
-            this.gender = gender;
-            this.monthlySalary = monthlySalary;
-            this.otherMonthlyIncome = otherMonthlyIncome;
-            this.annualDeductible = annualDeductible;
-            this.spouseName = spouseName;
-            this.spouseIdNumber = spouseIdNumber;
-            childNames = new LinkedList<String>();
-            childIdNumbers = new LinkedList<String>();
-        }
+    public Employee(String employeeId, PersonalInfo personalInfo, EmploymentInfo employmentInfo, int monthWorkingInYear, int yearJoined, int monthJoined, int dayJoined, int monthlySalary, int otherMonthlyIncome, int annualDeductible, String spouseName, String spouseIdNumber) {
+        this.employeeId = employeeId;
+        this.personalInfo = personalInfo;
+        this.employmentInfo = employmentInfo;
+        this.monthWorkingInYear = monthWorkingInYear;
+        this.yearJoined = yearJoined;
+        this.monthJoined = monthJoined;
+        this.dayJoined = dayJoined;
+        this.monthlySalary = monthlySalary;
+        this.otherMonthlyIncome = otherMonthlyIncome;
+        this.annualDeductible = annualDeductible;
+        this.spouseName = spouseName;
+        this.spouseIdNumber = spouseIdNumber;
+        
+        childNames = new LinkedList<String>();
+	childIdNumbers = new LinkedList<String>();
+    }
+
+        
 	
 	
 	
@@ -48,7 +55,7 @@ public class Employee {
 	 * Jika pegawai adalah warga negara asing gaji bulanan diperbesar sebanyak 50%
 	 */
 	private int calculateForeignerBonus(int baseSalary) {
-            return isForeigner ? (int)(baseSalary * 1.5) : baseSalary;
+            return employmentInfo.isIsForeigner() ? (int)(baseSalary * 1.5) : baseSalary;
         }
 
 	public void setMonthlySalary(int grade) {	
